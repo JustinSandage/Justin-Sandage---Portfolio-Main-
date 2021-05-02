@@ -198,7 +198,7 @@ hr {
 
 #social img {
     height: 25px;
-    margin-right: 5px;
+    margin-right: 10px;
     float: right;
 }
 
@@ -217,7 +217,7 @@ hr {
     font-size: 20px;
     line-height: 25px;
     font-weight: bold;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 #social a {
@@ -276,6 +276,14 @@ hr {
 }
 
 #pf_box_6.scrolled {
+    opacity: 1;
+}
+
+#pf_box_7 {
+    transition: opacity 500ms;
+}
+
+#pf_box_7.scrolled {
     opacity: 1;
 }
 

@@ -114,19 +114,7 @@ li:hover {
 	font-family: 'Open Sans', sans-serif;
 	opacity: .8;
 }
-.refresh_btn {
-	position: absolute;
-	top: 10px;
-	right: 0;
-	cursor: pointer;
-	user-select: none;
-	font-size: 36px;
-	margin-right: 5px;
-	z-index: 99;
-	font-family: 'Open Sans', sans-serif;
-	opacity: .8;
-}
-.add_btn:hover, .refresh_btn:hover {
+.add_btn:hover {
 	cursor: pointer;
 	opacity: 1;
 }
@@ -447,6 +435,11 @@ li img {
 @media screen and (min-width: 720px) {
 	#visible, #invisible {
 		display: none;
+		float: left;
+		height: 30px;
+	}
+	.tasks_btn {
+		line-height: 30px;
 	}
 }
 @media screen and (max-width: 719px) {
@@ -485,6 +478,9 @@ li img {
 		height: 30px;
 		line-height: 30px;
 	}
+	hr {
+		visibility: hidden;
+	}
 }
 </style>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap" rel="stylesheet">
@@ -519,7 +515,6 @@ $(document).ready(function(){
 			<h3><span style="font-size:20px;"><div class="tasks_btn active_btn"><img id="visible" src="visible.png"><img id="invisible" src="invisible.png">NOTES</div></span></h3>
 			<hr>
 		</div>
-		<div class="refresh_btn">&circlearrowright;</div>
 	</div>
 	<div class="note_section">
 		<img class="tasks_load" src="loading_white.gif">
@@ -527,12 +522,6 @@ $(document).ready(function(){
 		</ul>
 	</div>
 </div>
-<script>
-<!-- Refresh -->
-	$('.refresh_btn').click(function(){
-		update();
-	});
-</script>
 <script>
 	<!-- Notes Add -->
 	$('.add_btn').click(function(){
@@ -615,37 +604,6 @@ $(document).ready(function(){
 		// Confirm deletion animation
 		$(this).siblings('.kb_confirm').animate({right: '0px'});
 		$('.confirm_del').click(function(){
-			$(this).parents('.kb_confirm').html('<span class="confirm">Add KB?</span> <span class="confirm_kb" style="color:green;">&#10004;</span> <span class="cancel_kb" style="color:red;">X</span>');
-			$('.confirm_kb').click(function(){
-				$(this).parents('li').removeClass('selected');
-				$(this).parents('li').addClass('adding_a_note');
-				$(this).parents('li').html('<input placeholder="enter note for kb here" class="input_kb"></input><div class="save_kb">&#10004;</div><div class="cancel_kb_2">X</div>');
-				$('.input_kb').parents('li').css('list-style-type', 'none');
-				$('.input_kb').focus();
-				$('.save_kb').click(function(){
-					var kb_note = $('.input_kb').val();
-					$.ajax({
-						type: "POST",
-						url: "save_kb.php",
-						data: {kb_note: kb_note, note: note},
-						success: function() {
-							$.ajax({
-								type: "POST",
-								url: "delete_note.php",
-								data: {note: note_del},
-								success: function() {
-									update();
-								}
-							});
-						}
-					});
-				});
-			});
-			$(document).on('click', '.cancel_kb_2', function(){
-				update();
-			});
-		});
-		$(document).on('click', '.cancel_kb', function(){
 			$.ajax({
 				type: "POST",
 				url: "delete_note.php",
@@ -655,32 +613,20 @@ $(document).ready(function(){
 				}
 			});
 		});
-		/*
-		$.ajax({
-			type: "POST",
-			url: "delete_note.php",
-			data: {note: note_del},
-			success: function() {
-				update();
-			}
-		});*/
 	});
 </script>
 <script>
 	<!-- draggable notes div -->
 	function handle_mousedown(e){
-		console.log('1');
 		var width = $(window).width();
 		var div = e;
 		if(width >= 719) {
-			console.log('2');
 			window.my_dragging = {};
 			my_dragging.pageX0 = div.pageX;
 			my_dragging.pageY0 = div.pageY;
 			my_dragging.elem = $('.notes');
 			my_dragging.offset0 = $('.notes').offset();
 			function handle_dragging(div){
-				console.log('3');
 				var left = my_dragging.offset0.left + (div.pageX - my_dragging.pageX0);
 				var top = my_dragging.offset0.top + (div.pageY - my_dragging.pageY0);
 				$(my_dragging.elem).offset({top: top, left: left});
@@ -697,16 +643,30 @@ $(document).ready(function(){
 	$('.tasks_btn').click(function(){
 		var width = $(window).width();
 		if(width <= 719) {
-			if($('#visible').css('display') !== 'none') {
-				$('#visible').hide();
-				$('#invisible').show();
+			if($('#visible').css('display') === 'block') {
+				$('.cancel').click();
+				$('#visible')[0].style.setProperty('display', 'none', 'important');
+				$('#invisible')[0].style.setProperty('display', 'block', 'important');
 				$('.notes').addClass('hide_notes');
-				$('.note_top hr').hide();
-			} else {
-				$('#visible').show();
-				$('#invisible').hide();
+				$('.li_note').css('visibility', 'hidden');
+			} else if($('#visible').css('display') === 'none') {
+				$('#visible')[0].style.setProperty('display', 'block', 'important');
+				$('#invisible')[0].style.setProperty('display', 'none', 'important');
 				$('.notes').removeClass('hide_notes');
-				$('.note_top hr').show();
+				$('.li_note').css('visibility', 'visible');
+			}
+		}
+	});
+	$( window ).resize(function() {
+		var width = $(window).width();
+		if(width >= 719) {
+			$('#invisible')[0].style.setProperty('display', 'none', 'important');
+			$('#visible')[0].style.setProperty('display', 'none', 'important');
+			$('.notes').removeClass('hide_notes');
+			$('.li_note').css('visibility', 'visible');
+		} else {
+			if($('#invisible').css('display') === 'none') {
+				$('#visible')[0].style.setProperty('display', 'block', 'important');
 			}
 		}
 	});
