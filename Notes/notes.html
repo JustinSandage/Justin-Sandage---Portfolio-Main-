@@ -149,7 +149,6 @@ li input:focus, .search:focus {
 	margin-bottom: 10px;
 }
 li img {
-	display: inline-block;
 	height: 25px;
 	float: right;
 }
@@ -202,7 +201,6 @@ li img {
 	opacity: 1;
 }
 .delete_note {
-	display: inline-block;
 	float: right;
 	color: darkred;
 	opacity: .75;
@@ -523,7 +521,7 @@ $(document).ready(function(){
 	</div>
 </div>
 <script>
-	<!-- Notes Add -->
+	/* Notes Add */
 	$('.add_btn').click(function(){
 		var note_count = $('li').length;
 		if(note_count < 15) {
@@ -546,13 +544,13 @@ $(document).ready(function(){
 	});
 </script>
 <script>
-	<!-- Notes Cancel -->
+	/* Notes Cancel */
 	$(document).on('click', '.cancel', function(){
 		$(this).parents('li').remove();
 	});
 </script>
 <script>
-	<!-- Notes Save -->
+	/* Notes Save */
 	$(document).on('click', '.save', function(){
 		$(this).hide();
 		$(this).parents('li').find('.cancel').hide();
@@ -571,7 +569,7 @@ $(document).ready(function(){
 	});
 </script>
 <script>
-	<!-- Notes Select -->
+	/* Notes Select */
 	$(document).on('click', '.li_note', function(){
 		$('#limit_notice').css('visibility', 'hidden');
 		if($('input').length == 0){
@@ -593,7 +591,7 @@ $(document).ready(function(){
 	});
 </script>
 <script>
-	<!-- Notes Delete -->
+	/* Notes Delete */
 	$(document).on('click', '.delete_note', function(e){
 		e.stopPropagation();
 		$(this).hide();
@@ -616,7 +614,7 @@ $(document).ready(function(){
 	});
 </script>
 <script>
-	<!-- draggable notes div -->
+	/* draggable notes div */
 	function handle_mousedown(e){
 		var width = $(window).width();
 		var div = e;
