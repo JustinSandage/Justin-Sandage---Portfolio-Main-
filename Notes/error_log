@@ -445,3 +445,27 @@
 [30-Apr-2021 15:05:30 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/j0iyuaz2hvjz/public_html/Notes/retrieve_notes.php on line 5
 [30-Apr-2021 15:05:32 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/j0iyuaz2hvjz/public_html/Notes/retrieve_notes.php on line 5
 [30-Apr-2021 15:07:02 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/j0iyuaz2hvjz/public_html/Notes/retrieve_notes.php on line 5
+[12-May-2021 14:48:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::get_result() in /home/j0iyuaz2hvjz/public_html/Notes/retrieve_notes.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/j0iyuaz2hvjz/public_html/Notes/retrieve_notes.php on line 4
+[12-May-2021 14:49:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::get_result() in /home/j0iyuaz2hvjz/public_html/Notes/retrieve_notes.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/j0iyuaz2hvjz/public_html/Notes/retrieve_notes.php on line 4
+[12-May-2021 14:49:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::get_result() in /home/j0iyuaz2hvjz/public_html/Notes/retrieve_notes.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/j0iyuaz2hvjz/public_html/Notes/retrieve_notes.php on line 4
+[12-May-2021 14:49:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::get_result() in /home/j0iyuaz2hvjz/public_html/Notes/retrieve_notes.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/j0iyuaz2hvjz/public_html/Notes/retrieve_notes.php on line 4
+[12-May-2021 14:49:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::get_result() in /home/j0iyuaz2hvjz/public_html/Notes/retrieve_notes.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/j0iyuaz2hvjz/public_html/Notes/retrieve_notes.php on line 4
+[12-May-2021 14:51:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::get_result() in /home/j0iyuaz2hvjz/public_html/Notes/retrieve_notes.php:4
+Stack trace:
+#0 {main}
+  thrown in /home/j0iyuaz2hvjz/public_html/Notes/retrieve_notes.php on line 4

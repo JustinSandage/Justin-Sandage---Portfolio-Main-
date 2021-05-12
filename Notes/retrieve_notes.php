@@ -1,8 +1,10 @@
 <?php
-	$db = mysqli_connect("localhost", "justinsandage", "Temp!e2021!", "notes_app");
-	$notes = "SELECT note from notes";
-	$result = mysqli_query($db, $notes);
-	while($row = mysqli_fetch_array($result)) {
-	   echo '<li class="li_note"><span class="note">' . $row['note'] . '</span></li><hr>';
+	$db = new mysqli("localhost", "justinsandage", "Temp!e2021!", "notes_app");
+	$notes = $db->prepare("SELECT note from notes");
+	$notes->execute();
+	$notes->store_result();
+	$notes->bind_result($note);
+	while($notes->fetch()) {
+	   echo '<li class="li_note"><span class="note">' . $note. '</span></li><hr>';
 	}
 ?>
